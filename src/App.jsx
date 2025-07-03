@@ -10,11 +10,12 @@ function App() {
     const fetchIPData = async () => {
       try {
         const response = await fetch('https://free.freeipapi.com/api/json');
+
         if (!response.ok) {
-          throw new Error('Failed to fetch IP data');
+          throw new Error('No hemos podido localizar el país desde donde intentas acceder');
         }
-        const data = await response.json();
-        const countryCode = data.countryCode
+
+        const {countryCode} = await response.json();
 
         if(countryCode !== "ES"){
           throw new Error("Esta página está habilitada solo para España")
