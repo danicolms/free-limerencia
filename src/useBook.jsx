@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react"
+import { useEffect, useState } from "react"
 export function useBook() {
-  const [loading, setLoading] = useState(true);
-  const [bookBlob, setBookBlob] = useState()
-  
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDownloading, setIsDownloading] = useState(false)
+  const [bookBlob, setBookBlob] = useState() 
+
   async function prefetchBook() {
     function createBlobFromDataURL(dataURL) {
       const [headers, contentInBase64] = dataURL.split(",");
@@ -26,7 +27,11 @@ export function useBook() {
   }
 
   async function downloadBook() {
-    console.log(bookBlob);
+    setIsDownloading(true)
+
+    // Simulate delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
     const url = window.URL.createObjectURL(bookBlob);
     const a = document.createElement("a");
     a.style.display = "none";
@@ -36,26 +41,28 @@ export function useBook() {
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+    setIsDownloading(false)
   }
 
-    
+
   useEffect(() => {
     prefetchBook()
   }, [])
 
 
   useEffect(() => {
-    if(!bookBlob){
-      setLoading(true)
+    if (!bookBlob) {
+      setIsLoading(true)
       return
     }
 
-    setLoading(false)
+    setIsLoading(false)
   }, [bookBlob])
 
+
   return {
-    bookBlob,
     downloadBook,
-    loading
+    isLoading,
+    isDownloading
   };
 }

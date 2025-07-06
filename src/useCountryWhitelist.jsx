@@ -3,7 +3,7 @@ import { useState, useEffect} from "react";
 export function useCountryWhitelist(){
 const locationAPI = 'https://free.freeipapi.com/api/json'
 const allowedCountries = ["ES", "VE"]
-const [loading, setLoading] = useState(true);
+const [isLoading, setIsLoading] = useState(true);
 const [error, setError] = useState();
 
     useEffect(() => {
@@ -24,12 +24,12 @@ const [error, setError] = useState();
           } catch (err) {
             setError(err.message);
           } finally {
-            setLoading(false);
+            setIsLoading(false);
           }
         };
     
         fetchIPData();
       }, []);
 
-      return {loading, error}
+      return { isLoading, error}
 }
