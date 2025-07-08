@@ -16,8 +16,25 @@
   width: 100%
 }
 
-
 .loader {
   max-width: 20em;
   width: 100%;
 }
+
+.download__button {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  font-weight: 400;
+  margin: 1em;
+
+
+}
+
+
+.download__button:hover {
+  background-color: black;
+  color: white;
+  transition: all linear 0.25s;
+  filter: brightness(1.1);
+ }
