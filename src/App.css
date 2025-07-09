@@ -34,10 +34,11 @@
   margin: 1em;
   font-size: x-large;
   background-color: transparent;
+  cursor: pointer;
 }
 
 
-.download__button:hover {
+.download__button--regular:hover {
   color: black;
   text-decoration: underline;
   transform: scale(1.05);
@@ -50,11 +51,13 @@
  .download__button--loading {
   cursor: wait;
   color: var(--light-grey);
- }
-
-
- .download__button--loading:hover {
-  color: var(--light-grey);
   text-decoration: none;
-  transform: scale(1);
+  font-size: large;
  }
+
+ .download__button--downloaded {
+  cursor: default;
+  color: black;
+  pointer-events: none;
+ }
+

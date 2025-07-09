@@ -1,18 +1,20 @@
-export default function DownloadButton({download, isLoading = false, hasDownloaded = false}){
+export default function DownloadButton({download, isLoading = false, isDownloadFinished = false}){
     let caption;
     let classes = "download__button";
 
-    if(hasDownloaded) {
-        caption = "¡Que lo disfrutes!"
+    if(isDownloadFinished) {
+
         classes += " download__button--downloaded"
+        caption = "¡Que lo disfrutes!"
     }
 
     if(isLoading) {
-        caption = "Descargando..."
         classes += " download__button--loading"
+        caption = "Descargando..."
     }
 
-    if(!isLoading && !hasDownloaded) {
+    if(!isLoading && !isDownloadFinished) {
+        classes += " download__button--regular"
         caption = "~ Descargar gratis ~"
     }
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 export function useBook() {
   const [isLoading, setIsLoading] = useState(true);
   const [isDownloading, setIsDownloading] = useState(false)
+  const [isDownloadFinished, setIsDownloadFinished] = useState(false)
   const [bookBlob, setBookBlob] = useState() 
 
   async function prefetchBook() {
@@ -42,6 +43,7 @@ export function useBook() {
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
     setIsDownloading(false)
+    setIsDownloadFinished(true)
   }
 
 
@@ -63,6 +65,6 @@ export function useBook() {
   return {
     downloadBook,
     isLoading,
-    isDownloading
-  };
+    isDownloading,
+    isDownloadFinished  };
 }
