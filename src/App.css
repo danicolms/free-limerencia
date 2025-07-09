@@ -1,19 +1,26 @@
 #root {
-  max-width: 1280px;
+  max-width: 70em;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2em;
   text-align: center;
 }
 
 
 .logo__link {
   display: flex;
+  justify-content: center;
   padding: 1em;
 }
 
-.logo__img {
-  max-width:45em;
+.logo__img { 
+  max-width: 45em;
   width: 100%
+}
+
+.description {
+  font-size: x-large;
+  color: var(--grey);
+  margin: 1em 0;
 }
 
 .loader {
@@ -22,19 +29,32 @@
 }
 
 .download__button {
-  background: white;
-  color: black;
-  border: 1px solid black;
-  font-weight: 400;
+  color: var(--grey);
+  border: none;
   margin: 1em;
-
-
+  font-size: x-large;
+  background-color: transparent;
 }
 
 
 .download__button:hover {
-  background-color: black;
-  color: white;
-  transition: all linear 0.25s;
-  filter: brightness(1.1);
+  color: black;
+  text-decoration: underline;
+  transform: scale(1.05);
+ }
+
+ .download__button:active, .download__button:focus {
+  outline: none;
+ }
+
+ .download__button--loading {
+  cursor: wait;
+  color: var(--light-grey);
+ }
+
+
+ .download__button--loading:hover {
+  color: var(--light-grey);
+  text-decoration: none;
+  transform: scale(1);
  }
