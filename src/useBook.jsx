@@ -3,7 +3,7 @@ export function useBook() {
   const [isLoading, setIsLoading] = useState(true);
   const [isDownloading, setIsDownloading] = useState(false)
   const [isDownloadFinished, setIsDownloadFinished] = useState(false)
-  const [bookBlob, setBookBlob] = useState() 
+  const [bookBlob, setBookBlob] = useState()
 
   async function prefetchBook() {
     function createBlobFromDataURL(dataURL) {
@@ -28,22 +28,28 @@ export function useBook() {
   }
 
   async function downloadBook() {
-    setIsDownloading(true)
+    try {
+      setIsDownloading(true)
 
-    // Simulate delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulate delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const url = window.URL.createObjectURL(bookBlob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = "Limerencia.epub";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsDownloading(false)
+      setIsDownloadFinished(true)
+    }
 
-    const url = window.URL.createObjectURL(bookBlob);
-    const a = document.createElement("a");
-    a.style.display = "none";
-    a.href = url;
-    a.download = "Limerencia.epub";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-    setIsDownloading(false)
-    setIsDownloadFinished(true)
   }
 
 
@@ -66,5 +72,6 @@ export function useBook() {
     downloadBook,
     isLoading,
     isDownloading,
-    isDownloadFinished  };
+    isDownloadFinished
+  };
 }
