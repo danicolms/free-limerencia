@@ -27,7 +27,7 @@ export function useBook() {
     setBookBlob(createBlobFromDataURL(await bookDataURL.text()))
   }
 
-  async function downloadBook() {
+  async function download() {
     try {
       setIsDownloading(true)
 
@@ -69,7 +69,7 @@ export function useBook() {
 
 
   return {
-    downloadBook,
+    download,
     isLoading,
     isDownloading,
     isDownloadFinished
