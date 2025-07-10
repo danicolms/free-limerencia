@@ -15,7 +15,7 @@ export default function DownloadButton({download, isLoading = false, isDownloadF
 
     if(!isLoading && !isDownloadFinished) {
         classes += " download__button--regular"
-        caption = "~ Descargar gratis ~"
+        caption = "~Descargar gratis~"
     }
 
     return <button className={classes} onClick={download}> {caption} </button>
