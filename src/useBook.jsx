@@ -5,6 +5,10 @@ export function useBook() {
   const [isDownloadFinished, setIsDownloadFinished] = useState(false)
   const [bookBlob, setBookBlob] = useState()
 
+  async function delay(ms) {
+    await new Promise(resolve => setTimeout(resolve, ms));
+  }
+
   async function prefetchBook() {
     function createBlobFromDataURL(dataURL) {
       const [headers, contentInBase64] = dataURL.split(",");
@@ -21,6 +25,7 @@ export function useBook() {
       return new Blob([contentInUint8Array], { type: mime });
     }
 
+    await delay(1500)
     // NOTE: The book epub file is hashed
     // in base64 data url format in the /public/xxa78hbsja file.
     const bookDataURL = await fetch("xxa78hbsja");
@@ -30,10 +35,8 @@ export function useBook() {
   async function download() {
     try {
       setIsDownloading(true)
+      await delay(1000)
 
-      // Simulate delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       const url = window.URL.createObjectURL(bookBlob);
       const a = document.createElement("a");
       a.style.display = "none";

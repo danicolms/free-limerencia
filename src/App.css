@@ -1,3 +1,13 @@
+@keyframes appear {
+  from { opacity: 0 }
+  to   { opacity: 1; }
+}
+
+@keyframes wiggle {
+  from {  filter: blur(0.4px); transform: translate(.35px, -.6px); }
+  to   {filter: blur(0px); transform: translate(0, 0)}
+}
+
 #root {
   max-width: 70em;
   margin: 0 auto;
@@ -5,6 +15,9 @@
   text-align: center;
 }
 
+main {
+  animation: appear 0.5s;
+}
 
 .logo__link {
   display: flex;
@@ -26,6 +39,7 @@
 .loader {
   max-width: 20em;
   width: 100%;
+  animation: appear 0.5s
 }
 
 .download__button {
@@ -35,6 +49,9 @@
   font-size: x-large;
   background-color: transparent;
   cursor: pointer;
+  animation: wiggle 0.4s linear infinite;
+
+
 }
 
 
