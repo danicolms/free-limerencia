@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'AndreaScript';
-  src: url('AndreaScript.ttf') format('truetype');
+  src: url('./assets/fonts/AndreaScript.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
